@@ -8,7 +8,7 @@ let defaultSource = 0;
 
 let display, focus_connection, source_connection, settings;
 
-function update() {
+function restoreWindowInputSource() {
 
     let window = display.focus_window;
 
@@ -25,7 +25,7 @@ function update() {
 
 }
 
-function inputSourceChanged() {
+function saveWindowInputSource() {
 
     let current = settings.get_uint('current'),
         window = display.focus_window;
@@ -45,8 +45,10 @@ function init() {
 
 function enable() {
 
-    focus_connection = display.connect('notify::focus-window', update);
-    source_connection = settings.connect('changed::current', inputSourceChanged);
+    focus_connection = display.connect('notify::focus-window', restoreWindowInputSource);
+    source_connection = settings.connect('changed::current', saveWindowInputSource);
+
+    restoreWindowInputSource();
 
 }
 
@@ -54,5 +56,9 @@ function disable() {
 
     display.disconnect(focus_connection);
     settings.disconnect(source_connection);
+
+    saveWindowInputSource();
+
+    settings.set_uint('current', defaultSource);
 
 }
