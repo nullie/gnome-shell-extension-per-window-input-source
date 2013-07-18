@@ -58,6 +58,8 @@ function _createBoolSetting(setting) {
 */
 
 function init() {
+  Convenience.initTranslations("per-window-keyboard-layout");
+
   let schema = 'org.gnome.shell.extensions.per-window-keyboard-layout';
   settings = Convenience.getSettings(schema);
 
@@ -70,7 +72,7 @@ function init() {
       label: _("Remember associations forever."),
       help: _("Remember even if Gnome Shell is ended and started again")
     },
-  };
+  }; 
 }
 
 function buildPrefsWidget() {
