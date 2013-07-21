@@ -72,7 +72,7 @@ function init() {
       label: _("Remember associations forever."),
       help: _("Remember even if Gnome Shell is ended and started again")
     },
-  }; 
+  };
 }
 
 function buildPrefsWidget() {
