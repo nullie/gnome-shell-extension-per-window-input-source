@@ -58,6 +58,8 @@ function _createBoolSetting(setting) {
 */
 
 function init() {
+  Convenience.initTranslations("per-window-keyboard-layout");
+
   let schema = 'org.gnome.shell.extensions.per-window-keyboard-layout';
   settings = Convenience.getSettings(schema);
 
